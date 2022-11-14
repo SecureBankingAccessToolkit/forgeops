@@ -48,7 +48,7 @@ REQ_VERSIONS ={
     'secret-agent': {
         'MIN': 'v1.1.5',
         'MAX': 'v100.0.0',
-        'DEFAULT': 'latest',
+        'DEFAULT': 'v1.1.5',
     },
     'cert-manager': {
         'MIN': 'v1.5.1',
