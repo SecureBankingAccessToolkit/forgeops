@@ -10,5 +10,7 @@ commonLabels:
 resources:
 - deployment.yaml
 - service.yaml
+# This is for running a deployment with Gcloud CLI
+# - testdeployment.yaml
 # Need k8s 1.18+ to enable HPA
 # - hpa.yaml
