@@ -43,11 +43,11 @@ spec:
 
     # The volume spec for the DS data. This is the same as the Kubernetes PVC volume spec.
     volumeClaimSpec:
-      storageClassName: fast
+      storageClassName: standard-rwo
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 10Gi
+          storage: 1Gi
       # Optional: If the volume dataSource is provided *AND* the PVC does not yet exist, the directory PVCs will be
       # initialized from the contents of the snapshot. They will NOT be initialized from the setup script.
       #
