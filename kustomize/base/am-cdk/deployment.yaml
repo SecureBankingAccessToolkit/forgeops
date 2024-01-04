@@ -67,8 +67,13 @@ spec:
         image: am
         imagePullPolicy: Always
         command:
-          - bash
-          - /home/forgerock/docker-entrypoint.sh
+          - /bin/bash
+          - -c
+          - |
+            echo "Setting Tomcat maxHttpHeaderSize to 16k"
+            # maxHttpHeaderSize is not specified in server.xml (defaults to 8k), append the config to the Connector sections of server.xml
+            sed -i 's/redirectPort="8443" \/>/redirectPort="8443" maxHttpHeaderSize="16384" \/>/g' /usr/local/tomcat/conf/server.xml
+            /home/forgerock/docker-entrypoint.sh
         env:
         - name: NAMESPACE
           valueFrom:
