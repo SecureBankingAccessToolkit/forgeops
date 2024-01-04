@@ -113,9 +113,9 @@ spec:
           timeoutSeconds: 5
         resources:
           limits:
-            memory: 2000Mi
+            memory: 3500Mi
           requests:
-            memory: 1800Mi
+            memory: 2500Mi
             cpu: 250m
         volumeMounts:
         - name: new-truststore
