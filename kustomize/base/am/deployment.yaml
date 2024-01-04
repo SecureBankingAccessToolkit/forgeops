@@ -115,7 +115,7 @@ spec:
           limits:
             memory: 3500Mi
           requests:
-            memory: 2500Mi
+            memory: 3500Mi
             cpu: 250m
         volumeMounts:
         - name: new-truststore
