@@ -14,6 +14,7 @@ spec:
       annotations:
         "cluster-autoscaler.kubernetes.io/safe-to-evict": "true"
     spec:
+      serviceAccountName: am-kubernetes
       securityContext:
         runAsUser: 11111
         runAsGroup: 0
@@ -32,6 +33,9 @@ spec:
         - /bin/bash
         - -c
         - |
+          echo "Setting Tomcat maxHttpHeaderSize to 16k"
+          # maxHttpHeaderSize is not specified in server.xml (defaults to 8k), append the config to the Connector sections of server.xml
+          sed -i 's/redirectPort="8443" \/>/redirectPort="8443" maxHttpHeaderSize="16384" \/>/g' /usr/local/tomcat/conf/server.xml
           if [ -d /fbc/config ];
           then
             echo "Existing openam configuration found. Skipping copy"
@@ -114,9 +118,9 @@ spec:
           timeoutSeconds: 5
         resources:
           limits:
-            memory: 1800Mi
+            memory: 3500Mi
           requests:
-            memory: 1800Mi
+            memory: 3500Mi
             cpu: 250m
         volumeMounts:
         - name: new-truststore
