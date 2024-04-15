@@ -57,9 +57,9 @@ def check_base_toolset():
     check_component_version('kubernetes', re.split('-|_|\+', output)[0])
 
     # print('Checking kustomize version')
-    _, ver, _ = run('kustomize', 'version', cstdout=True)
-    ver = ver.decode('ascii')
-    check_component_version('kustomize', ver)
+#    _, ver, _ = run('kustomize', 'version', cstdout=True)
+#    ver = ver.decode('ascii')
+#    check_component_version('kustomize', ver)
 
 
 def forgeops_dependencies(legacy, operator):
