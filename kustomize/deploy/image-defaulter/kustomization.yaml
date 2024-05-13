@@ -2,14 +2,14 @@ kind: Component
 apiVersion: kustomize.config.k8s.io/v1alpha1
 images:
 - name: am
-  newName: europe-west4-docker.pkg.dev/sbat-gcr-develop/sapig-docker-artifact/openam/pr/am
-  newTag: test-01
+  newName: gcr.io/forgerock-io/am-base/pit1
+  newTag: 7.6.0-latest-postcommit
 - name: amster
-  newName: gcr.io/forgerock-io/amster/pit1
-  newTag: 7.6.0-latest-postcommit
+  newName: us-docker.pkg.dev/forgeops-public/images/amster
+  newTag: 7.5.0
 - name: ds
-  newName: gcr.io/forgerock-io/ds/pit1
-  newTag: 7.6.0-latest-postcommit
+  newName: us-docker.pkg.dev/forgeops-public/images/ds
+  newTag: 7.5.0
 - name: ds-cts
   newName: us-docker.pkg.dev/forgeops-public/images/ds-cts
   newTag: 7.5.0
@@ -19,8 +19,8 @@ images:
 - name: git-server
   newName: us-docker.pkg.dev/forgeops-public/images/git-server
 - name: idm
-  newName: gcr.io/forgerock-io/idm/pit1
-  newTag: 7.6.0-latest-postcommit
+  newName: us-docker.pkg.dev/forgeops-public/images/idm
+  newTag: 7.5.0
 - name: ig
   newName: us-docker.pkg.dev/forgeops-public/images/ig
   newTag: 2024.3.0
