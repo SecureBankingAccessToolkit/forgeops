@@ -4,8 +4,8 @@ commonLabels:
   app.kubernetes.io/part-of: forgerock
 images:
 - name: .*am:.*
-  newName: us-docker.pkg.7.5.0/forgeops-public/images/am
-  newTag: 7.5.0
+  newName: gcr.io/forgerock-io/am-cdk/pull-requests
+  newTag: 7.6.0-PR-22070-7-f3550b33b682b727ba213907ed9e5f7cd4cb758a
 - name: .*amster.*
   newName: us-docker.pkg.7.5.0/forgeops-public/images/amster
   newTag: 7.5.0
