@@ -41,7 +41,7 @@ jobs:
           create_credentials_file: true
       - name: Auth Docker
         run: |
-          gcloud auth configure-docker ${{ env.GAR_LOCATION }}
+          gcloud auth configure-docker europe-west4-docker.pkg.dev
       - name: Install Forgeops CDK
         working-directory: forgeops
         run: |
