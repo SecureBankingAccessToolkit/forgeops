@@ -1,0 +1,45 @@
+name: Deploy CDK(s) (Manual Run)
+on:
+  workflow_dispatch:
+  workflow_call:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Deploy CDK(s)
+    steps:
+      # Stop concurrent builds
+      - name: Turnstyle
+        uses: softprops/turnstyle@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout Forgeops
+        uses: actions/checkout@v4
+        with:
+          repository: SecureBankingAccessToolkit/forgeops
+          ref: 1522-custom-am-image
+          path: forgeops
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.5
+          terraform_wrapper: false
+      - name: Install PreReq
+        run: |
+          echo "Install Skaffold"
+          curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+          sudo install skaffold /usr/local/bin/
+      - name: Authenticate GCP
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.DEV_GAR_KEY }}
+          create_credentials_file: true
+      - name: Install Forgeops CDK
+        working-directory: forgeops
+        run: |
+          bin/forgeops build ds --push-to europe-west4-docker.pkg.dev/sbat-gcr-develop/sapig-docker-artifact
