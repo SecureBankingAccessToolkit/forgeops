@@ -1,4 +1,4 @@
-FROM gcr.io/forgerock-io/ds-empty:7.5.0
+FROM gcr.io/forgerock-io/ds:8.0.0-ba6d5a4372e97f5118f963462169df17c200dcbd
 
 # FOR DEBUG. Remove for production deployment
 USER root
