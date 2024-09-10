@@ -39,6 +39,9 @@ jobs:
         with:
           credentials_json: ${{ secrets.DEV_GAR_KEY }}
           create_credentials_file: true
+      - name: Auth Docker
+        run: |
+          gcloud auth configure-docker ${{ env.GAR_LOCATION }}
       - name: Install Forgeops CDK
         working-directory: forgeops
         run: |
