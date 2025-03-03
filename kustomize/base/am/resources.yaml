@@ -75,7 +75,7 @@ spec:
         app: am
         app.kubernetes.io/component: am
     spec:
-      serviceAccountName: default
+      serviceAccountName: am-kubernetes
       securityContext:
         fsGroup: 0
         runAsUser: 11111
@@ -118,6 +118,9 @@ spec:
             - /bin/bash
             - -c
             - |
+              echo "Setting Tomcat maxHttpHeaderSize to 16k"
+              # maxHttpHeaderSize is not specified in server.xml (defaults to 8k), append the config to the Connector sections of server.xml
+              sed -i 's/redirectPort="8443" \/>/redirectPort="8443" maxHttpHeaderSize="16384" \/>/g' /usr/local/tomcat/conf/server.xml
               if [ -d /fbc/config ];
               then
                 echo "Existing openam configuration found. Skipping copy"
@@ -203,10 +206,10 @@ spec:
             periodSeconds: 10
           resources:
             limits:
-              memory: 1800Mi
+              memory: 3500Mi
             requests:
               cpu: 250m
-              memory: 1800Mi
+              memory: 3500Mi
           volumeMounts:
             - name: new-truststore
               mountPath: /home/forgerock/amtruststore

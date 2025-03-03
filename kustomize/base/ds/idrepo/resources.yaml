@@ -272,8 +272,8 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 10Gi
-        storageClassName: fast
+            storage: 1Gi
+        storageClassName: standard-rwo
 ---
 # Source: identity-platform/templates/ds-certificates.yaml
 # Certs for SSL. This is also the truststore secret as well.
